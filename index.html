@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dummy Data Display</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-blue-600 p-6 text-white text-center">
+        <h1 class="text-3xl font-bold">Dummy Data Display</h1>
+        <p>
+            Showcasing Users, Products, and Orders
+        </p>
+    </header>
+
+    <!-- Users Section -->
+    <section class="p-6">
+        <h2 class="text-2xl font-semibold mb-4">Users</h2>
+        <div id="user-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="p-6 bg-gray-200">
+        <h2 class="text-2xl font-semibold mb-4">Products</h2>
+        <div id="product-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- Orders Section -->
+    <section class="p-6">
+        <h2 class="text-2xl font-semibold mb-4">Orders</h2>
+        <div id="order-list" class="space-y-6"></div>
+    </section>
+
+    <!-- JavaScript to Display JSON Data -->
+    <script>
+        // Sample JSON data
+        const jsonData = {
+            "users": [{
+                "id": 1,
+                "name": "John Doe",
+                "age": 29,
+                "email": "john.doe@example.com",
+                "phone": {
+                    "home": "123-456-7890",
+                    "mobile": "234-567-8901"
+                },
+                "addresses": [{
+                    "type": "home",
+                    "addressLine1": "123 Main St",
+                    "city": "Anytown",
+                    "state": "CA",
+                    "zip": "12345"
+                },
+                    {
+                        "type": "work",
+                        "addressLine1": "456 Office St",
+                        "city": "Big City",
+                        "state": "NY",
+                        "zip": "67890"
+                    }],
+                "orders": [{
+                    "order_id": "A123",
+                    "date": "2024-01-01",
+                    "status": "Shipped",
+                    "items": [{
+                        "product_id": "P1",
+                        "quantity": 2,
+                        "price": 29.99
+                    },
+                        {
+                            "product_id": "P2",
+                            "quantity": 1,
+                            "price": 19.99
+                        }],
+                    "total": 79.97
+                },
+                    {
+                        "order_id": "B456",
+                        "date": "2024-02-15",
+                        "status": "Pending",
+                        "items": [{
+                            "product_id": "P3",
+                            "quantity": 1,
+                            "price": 99.99
+                        }],
+                        "total": 99.99
+                    }],
+                "wish_list": ["P1",
+                    "P4"],
+                "rewards_points": 500
+            },
+                {
+                    "id": 2,
+                    "name": "Jane Smith",
+                    "age": 34,
+                    "email": "jane.smith@example.com",
+                    "phone": {
+                        "home": "345-678-9012",
+                        "mobile": "456-789-0123"
+                    },
+                    "addresses": [{
+                        "type": "home",
+                        "addressLine1": "789 Maple Ave",
+                        "city": "Smalltown",
+                        "state": "TX",
+                        "zip": "11223"
+                    },
+                        {
+                            "type": "work",
+                            "addressLine1": "1010 Corporate Rd",
+                            "city": "Megacity",
+                            "state": "FL",
+                            "zip": "44556"
+                        }],
+                    "orders": [{
+                        "order_id": "C789",
+                        "date": "2024-03-10",
+                        "status": "Delivered",
+                        "items": [{
+                            "product_id": "P4",
+                            "quantity": 3,
+                            "price": 49.99
+                        },
+                            {
+                                "product_id": "P5",
+                                "quantity": 1,
+                                "price": 24.99
+                            }],
+                        "total": 174.96
+                    }],
+                    "wish_list": ["P2",
+                        "P3",
+                        "P5"],
+                    "rewards_points": 1200
+                }],
+            "products": [{
+                "product_id": "P1",
+                "name": "Widget",
+                "description": "A very useful widget",
+                "price": 29.99,
+                "stock": 500,
+                "category": "Tools",
+                "rating": 4.5,
+                "reviews": [{
+                    "user_id": 2,
+                    "rating": 5,
+                    "comment": "Loved it! Very useful."
+                },
+                    {
+                        "user_id": 1,
+                        "rating": 4,
+                        "comment": "Good but could be cheaper."
+                    }]
+            },
+                {
+                    "product_id": "P2",
+                    "name": "Gadget",
+                    "description": "An awesome gadget",
+                    "price": 19.99,
+                    "stock": 300,
+                    "category": "Electronics",
+                    "rating": 4.7,
+                    "reviews": [{
+                        "user_id": 1,
+                        "rating": 5,
+                        "comment": "Excellent gadget for the price!"
+                    }]
+                },
+                {
+                    "product_id": "P3",
+                    "name": "Thingamajig",
+                    "description": "Something you can't live without",
+                    "price": 99.99,
+                    "stock": 100,
+                    "category": "Accessories",
+                    "rating": 4.2,
+                    "reviews": []
+                },
+                {
+                    "product_id": "P4",
+                    "name": "Doodad",
+                    "description": "A very interesting doodad",
+                    "price": 49.99,
+                    "stock": 200,
+                    "category": "Home",
+                    "rating": 4.3,
+                    "reviews": [{
+                        "user_id": 2,
+                        "rating": 4,
+                        "comment": "Nice addition to my home."
+                    }]
+                },
+                {
+                    "product_id": "P5",
+                    "name": "Whatsit",
+                    "description": "A mysterious whatsit",
+                    "price": 24.99,
+                    "stock": 400,
+                    "category": "Gifts",
+                    "rating": 4.6,
+                    "reviews": []
+                }],
+            "support_tickets": [{
+                "ticket_id": "T1001",
+                "user_id": 1,
+                "issue": "Delayed shipment",
+                "status": "Open",
+                "date_opened": "2024-11-01",
+                "messages": [{
+                    "sender": "user",
+                    "timestamp": "2024-11-01T10:00:00Z",
+                    "message": "Where is my order?"
+                },
+                    {
+                        "sender": "support",
+                        "timestamp": "2024-11-01T11:00:00Z",
+                        "message": "We are looking into it."
+                    }]
+            },
+                {
+                    "ticket_id": "T1002",
+                    "user_id": 2,
+                    "issue": "Product defect",
+                    "status": "Closed",
+                    "date_opened": "2024-10-20",
+                    "date_closed": "2024-10-22",
+                    "messages": [{
+                        "sender": "user",
+                        "timestamp": "2024-10-20T08:30:00Z",
+                        "message": "Received a defective item."
+                    },
+                        {
+                            "sender": "support",
+                            "timestamp": "2024-10-20T09:00:00Z",
+                            "message": "Please return it for a replacement."
+                        }]
+                }],
+            "discount_codes": [{
+                "code": "SUMMER2024",
+                "discount": "15%",
+                "valid_from": "2024-06-01",
+                "valid_until": "2024-08-31",
+                "minimum_purchase": 50,
+                "max_uses": 1000
+            },
+                {
+                    "code": "WELCOME10",
+                    "discount": "10%",
+                    "valid_from": "2024-01-01",
+                    "valid_until": "2024-12-31",
+                    "minimum_purchase": 0,
+                    "max_uses": 500
+                }],
+            "shipment_tracking": [{
+                "order_id": "A123",
+                "carrier": "FedEx",
+                "tracking_number": "123456789",
+                "status": "In Transit",
+                "updates": [{
+                    "date": "2024-01-02",
+                    "location": "Distribution Center",
+                    "status": "Package Received"
+                },
+                    {
+                        "date": "2024-01-03",
+                        "location": "City Hub",
+                        "status": "In Transit"
+                    }]
+            },
+                {
+                    "order_id": "C789",
+                    "carrier": "UPS",
+                    "tracking_number": "987654321",
+                    "status": "Delivered",
+                    "updates": [{
+                        "date": "2024-03-11",
+                        "location": "Recipient's City",
+                        "status": "Out for Delivery"
+                    },
+                        {
+                            "date": "2024-03-11",
+                            "location": "Recipient's Address",
+                            "status": "Delivered"
+                        }]
+                }],
+            "settings": {
+                "theme": "light",
+                "notifications": {
+                    "email": true,
+                    "sms": false,
+                    "push": true
+                },
+                "language": "en",
+                "timezone": "UTC",
+                "currency": "USD",
+                "security": {
+                    "two_factor_authentication": true,
+                    "login_alerts": true
+                }
+            },
+            "statistics": {
+                "total_users": 2,
+                "total_orders": 3,
+                "total_revenue": 354.92,
+                "average_order_value": 118.31,
+                "top_product": "Widget",
+                "monthly_sales": {
+                    "2024-01": 5000,
+                    "2024-02": 3000,
+                    "2024-03": 7500
+                }
+            },
+            "logs": [{
+                "timestamp": "2024-10-01T12:34:56Z",
+                "event": "User login",
+                "user_id": 1,
+                "ip_address": "192.168.1.1"
+            },
+                {
+                    "timestamp": "2024-10-02T08:22:13Z",
+                    "event": "Product added to cart",
+                    "user_id": 2,
+                    "product_id": "P1",
+                    "quantity": 2
+                },
+                {
+                    "timestamp": "2024-10-03T14:47:23Z",
+                    "event": "Order placed",
+                    "user_id": 1,
+                    "order_id": "A123"
+                },
+                {
+                    "timestamp": "2024-10-05T09:15:45Z",
+                    "event": "Discount code applied",
+                    "user_id": 2,
+                    "discount_code": "WELCOME10"
+                }]
+        };
+
+        // Display Users
+        function displayUsers() {
+            const userContainer = $("#user-list");
+            jsonData.users.forEach(user => {
+                const userCard = `
+                <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-xl font-bold">${user.name}</h3>
+                <p>Age: ${user.age}</p>
+                <p>Email: ${user.email}</p>
+                <p>Home Phone: ${user.phone.home}</p>
+                <p>Mobile: ${user.phone.mobile}</p>
+                <h4 class="mt-4 font-semibold">Address:</h4>
+                <p>${user.addresses[0].addressLine1}, ${user.addresses[0].city}, ${user.addresses[0].state} ${user.addresses[0].zip}</p>
+                </div>
+                `;
+                userContainer.append(userCard);
+            });
+        }
+
+        // Display Products
+        function displayProducts() {
+            const productContainer = $("#product-list");
+            jsonData.products.forEach(product => {
+                const productCard = `
+                <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-xl font-bold">${product.name}</h3>
+                <p>Category: ${product.category}</p>
+                <p>Description: ${product.description}</p>
+                <p>Price: $${product.price}</p>
+                <p>Stock: ${product.stock}</p>
+                <p>Rating: ${product.rating}</p>
+                </div>
+                `;
+                productContainer.append(productCard);
+            });
+        }
+
+        // Display Orders
+        function displayOrders() {
+            const orderContainer = $("#order-list");
+            jsonData.users.forEach(user => {
+                user.orders.forEach(order => {
+                    let itemsList = "";
+                    order.items.forEach(item => {
+                        itemsList += `<li>${item.product_id} - Qty: ${item.quantity}, Price: $${item.price}</li>`;
+                    });
+                    const orderCard = `
+                    <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="text-xl font-bold">Order ID: ${order.order_id}</h3>
+                    <p>Date: ${order.date}</p>
+                    <p>Status: ${order.status}</p>
+                    <h4 class="font-semibold mt-4">Items:</h4>
+                    <ul class="list-disc pl-6">${itemsList}</ul>
+                    <p class="mt-4 font-bold">Total: $${order.total}</p>
+                    </div>
+                    `;
+                    orderContainer.append(orderCard);
+                });
+            });
+        }
+
+        // Initialize page
+        $(document).ready(function() {
+            displayUsers();
+            displayProducts();
+            displayOrders();
+        });
+    </script>
+
+</body>
+</html>
